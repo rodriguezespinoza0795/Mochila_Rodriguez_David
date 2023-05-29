@@ -1,0 +1,74 @@
+- **Flujo de trabajo común [Local] (init, add, commit)**
+  - **`git init`**: El comando para iniciar nuestro repositorio, o sea, indicarle a Git que queremos usar su sistema de control de versiones en nuestro proyecto
+  - **`git add`**: El comando para que nuestro repositorio sepa de la existencia de un archivo o sus últimos cambios, Este comando no almacena las actualizaciones de forma definitiva, solo las guarda en algo que conocemos como “Staging Area”
+  - `git commit`
+    - `git commit -m "Mensaje del commit"`: nos ayuda a mover archivos de Unstaged a Tracked. Esta es una ocasión especial, los archivos han sido guardado o actualizados en el repositorio.
+    - `git commit --amend -m "Nuevo mensaje del commit"` : Cambiar el mensaje del último commit
+    - `git commit -am "Mensaje"`: Agrega los archivos modificados y crea un nuevo commit
+- **Flujo de trabajo común [Remoto]**
+  - `git clone <url_del_servidor_remoto>`: Nos permite descargar los archivos de la última versión de la rama principal y todo el historial de cambios en la carpeta .git.
+  - `git push:` Luego de hacer git add y git commit debemos ejecutar este comando para mandar los cambios al servidor remoto.
+  - `git pull:` Básicamente, git fetch y git merge al mismo tiempo.
+    - **`git fetch`**: Lo usamos para traer actualizaciones del servidor remoto y guardarlas en nuestro repositorio local (en caso de que hayan, por supuesto).
+    - **`git merge`**: También usamos el comando `git merge` con servidores remotos. Lo necesitamos para combinar los últimos cambios del servidor remoto y nuestro directorio de trabajo.
+- `git push`: El comando para mandar nuestros commits a un servidor remoto, un lugar donde todos podamos conectar nuestros proyectos
+- `git status` :nos permite ver el estado de todos nuestros archivos y carpetas.
+- `git show`: todos los cambios históricos hechos
+- `git log`
+  - `git log "nombre de archivo"`: revisar el historial completo de una archivo.
+  - `git log —stat`: verificar lo movimientos de un commit a otro
+  - `git log --all --graph --decorate --oneline:` ver el historial de commit anidados como un árbol
+- `git --version`: Revisar la versión de git instalado.
+- `git reset`: Regresar a una versión anterior
+  - `git reset HEAD`: Nos ayuda a sacar archivos del estado Staged para devolverlos a su estado anterior. Si los archivos venían de Unstaged, vuelven allí. Y lo mismo se venían de Untracked.
+  - `git reset —hard`: borra toda la información que tengamos en el área de staging (y perdiendo todo para siempre)
+  - `git reset —soft`: Borramos todo el historial y los registros de Git pero guardamos los cambios que tengamos en Staging, así podemos aplicar las últimas actualizaciones a un nuevo commit.
+- `git rm**:` este comando necesita alguno de los siguientes argumentos para poder ejecutarse correctamente:
+  - `git rm --cached`: Elimina los archivos del área de Staging y del próximo commit pero los mantiene en nuestro disco duro.
+  - `git rm --force`: Elimina los archivos de Git y del disco duro. Git guarda el registro de la existencia de los archivos, por lo que podremos recuperarlos si es necesario (pero debemos usar comandos más avanzados).
+- `git diff <commitA> <commitB>` : Mostrar los cambios con respecto a la última versión guardada en el repositorio
+- `git diff HEAD~2..HEAD`: Mostrar las diferencias entre la última versión y dos versiones anteriores.
+- `git config`
+  - `git config --list:` Revisar configuración por defecto
+  - `git config --global user.email "tu@email.com"` :Definir correo del usuario
+  - `git config --global user.name "Tu Nombre"` :Definir nombre del usuario
+  - `git config --global color.ui auto` : activar el coloreado de la salida
+- `git checkout`
+  - `git checkout <hash del commit> <nombre de archivo>:` moverme a un commit pasado
+  - `git checkout master <nombre de archivo>:` moverme al head del archivo (última versión)
+- `git branch <nombre de rama>`: Crear una nueva rama
+- `git checkout <nombre de rama>`: moverme de rama
+- `git branch -d <nombre de rama>`: Eliminar una rama
+- `git branch`: Listas ramas disponibles
+- `git merge <rama>`: Funciona las ramas (trae los cambios de la rama a la cual haces el merge.)
+- `git remote add origin <url proyecto>`: agregar origen
+- `git remote`: revisar origenes disponibles
+- `git remote -v`: revisar origenes disponibles verbalmente
+- `git push <origen> <rama>`:Traer los cambios de la rama remota"`git pull origin master`"
+- `git push <origen> <rama>`: Enviar la rama al origen seleccionado "`git push origin master`"
+- `git remote set-url <origen> <url SSH>` : modificar la url a la que apunta el origen.
+- `git tag -a <nombre del tag> -m <mensaje> <id_commit>` : Crear un tag
+- `git tag`: mostrar tags
+- `git show-ref tag v0.1`: Mostrar el commit al cuál hace referencia
+- `git push origin --tags`: Enviar los tags de local al repositorio remoto
+- `git tag -d <nombre de tag>`: Eliminar Tag
+- `git push origin :refs/tags/<nombre del tag>:` Borrar referencia en Github
+- `git annotate <archivo>`: Mostrar quién ha hecho cambios sobre el fichero
+- `git show-branch`: historial de ramas y su historial.
+- `git show-branch --all`: historial de ramas y su historial, con mas información.
+- `gitk`: abrir un entorno visual.
+- `git rebase <rama>`:Con rebase puedes recoger todos los cambios confirmados en una rama y ponerlos sobre otra.
+- `git stash`: Guardar los cambios realizados y volver al commit anterior.
+  - `git stash list`: ver los stash
+  - `git stash pop` : regresar al stash
+  - `git stash drop`: Eliminar el stash
+- `git clean --dry-run` : Verificar los archivos duplicados que se pueden eliminar
+- `git clean -f`: Eliminar archivos duplicados
+- `git cherry-pick <id del commit>`: traer un commit viejo a una nueva rama
+- `git reflog`: Muestra la historia completa, incluido las ramas eliminadas
+- `git grep <texto a buscar>`: Buscar texto dentro de los archivos del proyecto
+- `git grep -n <texto a buscar>`: Buscar texto dentro de los archivos del proyecto, con la línea
+- `git grep -c <texto a buscar>`: Cantidad de veces que se encuentra una palabra
+- `git log -S <texto a buscar>`: busca una palabra dentro de la historia del proyecto (commits)
+- `git config —global alias.<nombre del comando> "Comando"`: Crear un alias
+- `git <comando> —help`: codumentación del comando
